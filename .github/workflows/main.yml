@@ -1,0 +1,17 @@
+name: Deploy Docker Container on Push
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  docker-compose:
+    runs-on: self-hosted
+    environment: docker
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Build and start Docker container
+        run: docker compose up --build -d
